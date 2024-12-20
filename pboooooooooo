@@ -1,0 +1,23 @@
+title Proses Menjawab Soal
+
+participant Player
+participant Game
+participant Question
+
+Player -> Game: Meminta soal baru
+Game -> Question: Mengambil soal berdasarkan kesulitan
+Question --> Game: Mengembalikan soal
+Game -> Player: Menampilkan soal
+
+Player -> Game: Memberikan jawaban (PlayerAnswer)
+Game -> Question: Memeriksa jawaban (CheckAnswer(PlayerAnswer))
+Question --> Game: Hasil pengecekan (true/false)
+
+alt Jawaban Benar
+    Game -> Player: Menambah skor (increaseScore)
+    Game -> Player: Menambah koin (updateQoin)
+else Jawaban Salah
+    Game -> Player: Mengurangi health (decreaseHealth)
+end
+
+Game -> Player: Memperbarui status permainan
